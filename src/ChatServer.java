@@ -65,7 +65,7 @@ public class ChatServer {
 					}
 					else if(msgType.equals("LOGOUT")){
 						for(int i=0; i<LoginNames.size(); i++) {
-							if(LoginName == LoginNames.elementAt(i))
+							if(LoginName.equals(LoginNames.elementAt(i)))
 								lo = i;
 							Socket pSocket = (Socket) ClientSockets.elementAt(i);
 							DataOutputStream pOut = new DataOutputStream(pSocket.getOutputStream());
@@ -85,6 +85,8 @@ public class ChatServer {
 								pOut.writeUTF(LoginName + ": " + msg); // msg displayed for other logged in user
 						}
 					}
+					if(msgType.equals("LOGOUT"))
+						break;
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
